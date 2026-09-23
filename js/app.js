@@ -192,6 +192,7 @@
     en.textContent = 'PRESETS';
     name.appendChild(en);
     const val = el('b', 'ctrl__val', params.palette);
+    val.id = 'palette-val';
     top.append(name, val);
     wrap.appendChild(top);
 
@@ -246,7 +247,7 @@
       input.addEventListener('input', () => {
         set(key, input.value);
         params.palette = 'CUSTOM';
-        const chipHost = document.querySelector('.ctrl__val');
+        const chipHost = document.getElementById('palette-val');
         if (chipHost) chipHost.textContent = 'CUSTOM';
       });
       item.append(input, label);

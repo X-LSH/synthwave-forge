@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SYNTHWAVE FORGE · 合成波地平线</title>
+<meta name="description" content="程序化生成霓虹地平线场景：随机山脉轮廓线 + 落日 + 透视网格 + 星空，全部可调，一键导出 PNG。地形生成算法的美术输出。">
+<meta name="theme-color" content="#0b0130">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23ffe66d'/><stop offset='1' stop-color='%23ff2d95'/></linearGradient></defs><rect width='32' height='32' fill='%230b0130'/><circle cx='16' cy='14' r='9' fill='url(%23g)'/><path d='M0 23h32v2H0zM0 27.5h32v1.5H0z' fill='%2322e6ff'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Dots&family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ══════════ 舞台 STAGE ══════════ -->
+  <section class="stage">
+    <canvas id="scene"></canvas>
+
+    <header class="brand">
+      <div class="brand__kicker">PROCEDURAL // NEON HORIZON GENERATOR</div>
+      <h1 class="brand__title">SYNTHWAVE<em>FORGE</em></h1>
+      <div class="brand__cn">合成波地平线 · 地形生成算法的美术输出</div>
+    </header>
+
+    <div class="stage__hud">
+      <span class="hud-chip">SEED <b id="hud-seed">—</b></span>
+      <span class="hud-chip">ALGO <b id="hud-algo">—</b></span>
+      <span class="hud-chip">LAYERS <b id="hud-layers">—</b></span>
+    </div>
+
+    <div class="stage__hint">
+      <kbd>R</kbd> 随机生成 &nbsp;·&nbsp; <kbd>E</kbd> 导出 PNG
+    </div>
+
+    <div class="stage__corner stage__corner--tl" aria-hidden="true"></div>
+    <div class="stage__corner stage__corner--br" aria-hidden="true"></div>
+  </section>
+
+  <!-- ══════════ 控制台 CONSOLE ══════════ -->
+  <aside class="panel">
+    <div class="panel__stripe" aria-hidden="true"></div>
+
+    <div class="panel__head">
+      <div class="panel__title">
+        <h2>控制台</h2><span>CONSOLE</span>
+      </div>
+      <div class="seedbox">
+        <label for="seed">种子 SEED</label>
+        <div class="seedbox__row">
+          <input id="seed" type="number" min="0" max="99999999" step="1" value="1984" inputmode="numeric">
+          <button id="roll" class="icon-btn" title="随机种子" aria-label="随机种子">🎲</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="controls" class="controls"><!-- JS 生成 --></div>
+
+    <div class="panel__foot">
+      <div class="section">
+        <div class="section__head"><i>05</i>导出 EXPORT</div>
+        <div class="export-row">
+          <select id="resolution" aria-label="导出分辨率">
+            <option value="1920x1080">1920 × 1080 · FHD</option>
+            <option value="2560x1440">2560 × 1440 · QHD</option>
+            <option value="3840x2160" selected>3840 × 2160 · 4K</option>
+            <option value="1080x1080">1080 × 1080 · 方形</option>
+            <option value="1080x1920">1080 × 1920 · 竖屏</option>
+          </select>
+          <button id="export" class="btn btn--primary">⬇ 导出 PNG</button>
+        </div>
+        <div class="export-row export-row--sub">
+          <button id="randomize" class="btn btn--ghost">◈ 随机参数</button>
+          <button id="reset" class="btn btn--ghost">↺ 重置默认</button>
+        </div>
+      </div>
+      <p class="footnote">轮廓线由中点位移 / 正弦叠加算法生成 · 每个种子即一张独立版画</p>
+    </div>
+  </aside>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<noscript><p style="padding:2rem;font-family:monospace">需要启用 JavaScript 才能生成场景。</p></noscript>
+
+<script src="js/rng.js"></script>
+<script src="js/generator.js"></script>
+<script src="js/renderer.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

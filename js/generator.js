@@ -111,12 +111,33 @@
     return stars;
   }
 
+  /** 地平线城市灯带：赛博霓虹微光柱 */
+  function buildLights(p) {
+    const rnd = ForgeRNG.mulberry32(ForgeRNG.seedFrom(p.seed + '::city'));
+    const n = 40 + ((rnd() * 40) | 0);
+    const lights = [];
+    for (let i = 0; i < n; i++) {
+      lights.push({
+        x: rnd(),
+        w: 0.0015 + rnd() * 0.005,
+        h: rnd(),
+        ph: rnd() * Math.PI * 2,
+        c: rnd()
+      });
+    }
+    return lights;
+  }
+
   global.ForgeGen = {
     SAMPLES,
     midpointDisplacement,
     sineStack,
     build(p) {
-      return { ridges: buildRidges(p), stars: buildStars(p) };
+      return {
+        ridges: buildRidges(p),
+        stars: buildStars(p),
+        lights: buildLights(p)
+      };
     }
   };
 })(window);

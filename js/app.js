@@ -7,37 +7,37 @@
   /* ── 调色板 ───────────────────────────────── */
   const PALETTES = [
     { id: 'OUTRUN', label: 'OUTRUN', colors: {
-      skyTop: '#0b0130', skyBottom: '#7a1065', sunA: '#ffe66d',
-      sunB: '#ff2d95', grid: '#22e6ff', ridge: '#ff3fa4' } },
+      skyTop: '#070126', skyBottom: '#93127c', sunA: '#ffe66d',
+      sunB: '#ff2d95', grid: '#35f0ff', ridge: '#ff3fa4' } },
     { id: 'MIAMI', label: 'MIAMI', colors: {
-      skyTop: '#02102e', skyBottom: '#14707e', sunA: '#ffd166',
-      sunB: '#ff5e7e', grid: '#4fffe0', ridge: '#ff8fb1' } },
+      skyTop: '#010c26', skyBottom: '#0f8c96', sunA: '#ffd166',
+      sunB: '#ff4d78', grid: '#4fffe0', ridge: '#ff8fb1' } },
     { id: 'NOIR', label: 'NOIR', colors: {
-      skyTop: '#05060c', skyBottom: '#33203a', sunA: '#ffb347',
-      sunB: '#ff3b30', grid: '#35d0ba', ridge: '#e64a5c' } },
+      skyTop: '#04050a', skyBottom: '#3a1f4a', sunA: '#ffb347',
+      sunB: '#ff2a2a', grid: '#35e0c8', ridge: '#f04a70' } },
     { id: 'DUNE', label: 'DUNE', colors: {
-      skyTop: '#170a05', skyBottom: '#b2431f', sunA: '#ffe0b0',
-      sunB: '#ff7b00', grid: '#ffd166', ridge: '#ff8c42' } },
+      skyTop: '#150803', skyBottom: '#c74a1c', sunA: '#ffe9c4',
+      sunB: '#ff7b00', grid: '#ffd166', ridge: '#ff9442' } },
     { id: 'VAPOR', label: 'VAPOR', colors: {
-      skyTop: '#2a1a4a', skyBottom: '#ff9a9e', sunA: '#fff5e6',
-      sunB: '#ffc2e0', grid: '#b388ff', ridge: '#ffafcc' } }
+      skyTop: '#241245', skyBottom: '#ff8fa8', sunA: '#fff7ee',
+      sunB: '#ffb8d9', grid: '#c9a0ff', ridge: '#ff9ecb' } }
   ];
 
   const DEFAULTS = {
     seed: 1984,
     mode: 'midpoint',
     layers: 4,
-    amplitude: 0.62,
-    roughness: 0.55,
+    amplitude: 0.68,
+    roughness: 0.58,
     octaves: 5,
     baseFreq: 1.6,
     horizon: 0.54,
-    sunSize: 0.13,
+    sunSize: 0.15,
     sunElev: 0.9,
-    stars: 180,
-    glow: 1.0,
-    gridDensity: 24,
-    gridSpeed: 0.4,
+    stars: 240,
+    glow: 1.4,
+    gridDensity: 26,
+    gridSpeed: 0.42,
     palette: 'OUTRUN',
     colors: { ...PALETTES[0].colors }
   };
@@ -364,7 +364,8 @@
   /* ── 画布尺寸 ─────────────────────────────── */
   function resize() {
     const r = stage.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Bloom 后期每帧要做两次模糊合成，DPR 上限压到 1.5 保证流畅
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     const w = Math.max(2, Math.round(r.width * dpr));
     const h = Math.max(2, Math.round(r.height * dpr));
     if (canvas.width !== w || canvas.height !== h) {

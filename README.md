@@ -3,7 +3,7 @@
 > 程序化生成霓虹地平线场景 —— **地形生成算法的美术输出**
 > 随机山脉轮廓线 + 落日 + 透视网格 + 星空，全部可调，一键导出 PNG。
 
-**🎮 [在线体验 →](https://x-lhs.github.io/synthwave-forge/)**
+**🎮 [在线体验 →](https://x-lsh.github.io/synthwave-forge/)**
 
 ![palette](https://img.shields.io/badge/style-synthwave-ff2d95) ![deps](https://img.shields.io/badge/dependencies-zero-22e6ff) ![license](https://img.shields.io/badge/license-MIT-8a5cff)
 
@@ -23,7 +23,7 @@
 ## 🚀 本地运行
 
 ```bash
-git clone https://github.com/X-LHS/synthwave-forge.git
+git clone https://github.com/X-LSH/synthwave-forge.git
 cd synthwave-forge
 # 直接双击 index.html 即可，或起个静态服务：
 npx serve .
@@ -45,7 +45,7 @@ app.js ─────── 控制台装配 · 实时预览循环 · 离屏画�
 本仓库已启用 Pages（main 分支根目录）。若 fork 后需要重新启用：
 
 ```bash
-gh api -X POST repos/{owner}/synthwave-forge/pages \
+gh api -X POST repos/X-LSH/synthwave-forge/pages \
   -f source[branch]=main -f source[path]=/
 ```
 
